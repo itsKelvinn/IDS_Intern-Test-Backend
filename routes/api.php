@@ -18,13 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::prefix("product")->group( function () {
     Route::get("/",[ProductController::class,'index']);
     Route::post("/",[ProductController::class,'create']);
-    Route::put("/{_productId}",[ProductController::class,'update']);
+    Route::put("/{productId}",[ProductController::class,'update']);
 });
 
 Route::prefix("transaction")->group( function () {
     Route::get("/",[ProductController::class,'index']);
     Route::post("/",[ProductController::class,'create']);
-    Route::put("/{_transactionId}",[ProductController::class,'update']);
+    Route::put("/{transactionId}",[ProductController::class,'update']);
 });
 
 Route::prefix("auth")->group( function () {

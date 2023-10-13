@@ -13,7 +13,7 @@ class ProductRequest extends FormRequest
     {
         $response = [
             "data" => null,
-            Status::FAILED
+            "status" => Status::FAILED
         ];
 
         throw new HttpResponseException(response()->json($response, 422));

@@ -17,13 +17,13 @@ class ProductController extends Controller
         if ($products->isEmpty()) {
             return response()->json([
                 "data" => $products,
-                Status::FAILED
+                "status" => Status::FAILED
             ],404);
         }
 
         return response()->json([
             "data" => $products,
-            Status::SUCCESS
+            "status" => Status::SUCCESS
         ],200);
     }
 
@@ -34,19 +34,19 @@ class ProductController extends Controller
         
         return response()->json([
             "data" => $product,
-            Status::SUCCESS
+            "status" => Status::SUCCESS
         ],201);
     }
 
-    public function update(ProductRequest $_request , Integer $_productId)
+    public function update(ProductRequest $_request , Integer $productId)
     {
-        $product = Product::find($_productId);
+        $product = Product::find($productId);
         
         if(!$product)
         {
             return response()->json([
                 "data" => null,
-                Status::FAILED
+                "status" => Status::FAILED
             ],404);
         }
 
@@ -54,7 +54,7 @@ class ProductController extends Controller
         
         return response()->json([
             "data" => null,
-            Status::SUCCESS
+            "status" => Status::SUCCESS
         ],200);
     }
 

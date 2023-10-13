@@ -17,13 +17,13 @@ class TransactionController extends Controller
         {
             return response()->json([
                 "data" => $transactions,
-                Status::FAILED
+                "status" => Status::FAILED
             ],404);
         }
 
         return response()->json([
             "data" => $transactions,
-            Status::SUCCESS
+            "status" => Status::SUCCESS
         ],200);
     }
 
@@ -33,19 +33,19 @@ class TransactionController extends Controller
         
         return response()->json([
             "data" => $transactions,
-            Status::SUCCESS
+            "status" => Status::SUCCESS
         ],200);
     }
 
-    public function update(TransactionRequest $_request , Integer $_transactionId)
+    public function update(TransactionRequest $_request , Integer $transactionId)
     {
-        $transactions = Transaction::find($_transactionId);
+        $transactions = Transaction::find($transactionId);
 
         if(!$transactions)
         {
             return response()->json([
                 "data" => $transactions,
-                Status::FAILED
+                "status" => Status::FAILED
             ],404);
         }
 
@@ -53,7 +53,7 @@ class TransactionController extends Controller
 
         return response()->json([
             "data" => $transactions,
-            Status::SUCCESS
+            "status" => Status::SUCCESS
         ],200);
     }
 

@@ -18,14 +18,14 @@ class AuthController extends Controller
         {
             return response()->json([
                 "data" => null,
-                Status::SUCCESS
+                "status" => Status::SUCCESS
             ],200);
         } 
         else 
         {
             return response()->json([
                 "data" => null,
-                Status::FAILED
+                "status" => Status::FAILED
             ], 401);
         }
     } 
@@ -36,7 +36,7 @@ class AuthController extends Controller
 
         return response()->json([
             "data" => null,
-            Status::SUCCESS
+            "status" => Status::SUCCESS
         ], 201);
     }
 }

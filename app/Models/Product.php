@@ -9,14 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
+    public $timestamps = false; 
+
     protected $fillable = [
-        "productID",
-        "productName",
-        "amount",
-        "customerName",
-        "status",
-        "transactionDate",
-        "createBy"
+        "productName"
     ];
 
 }
