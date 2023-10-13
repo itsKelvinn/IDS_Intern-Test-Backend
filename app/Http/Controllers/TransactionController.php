@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Constants\Status;
 use App\Http\Requests\TransactionRequest;
+use App\Models\Product;
 use App\Models\Transaction;
 use Ramsey\Uuid\Type\Integer;
 
@@ -30,16 +31,24 @@ class TransactionController extends Controller
     public function create(TransactionRequest $_request)
     {
         $validatedTransaction = $_request->all();
-        $validatedTransaction['transactionDate'] = now(); 
-        $validatedTransaction['createOn'] = now();
+        $product = Product::find($validatedTransaction['productID']);
 
-        $transaction = Transaction::create($validatedTransaction);
-        
-        return response()->json([
-            "data" => $transaction,
-            "status" => Status::SUCCESS
-        ], 200);
+        if ($product) {
+            $validatedTransaction['productName'] = $product->productName;
+            $transaction = Transaction::create($validatedTransaction);
+
+            return response()->json([
+                "data" => $transaction,
+                "status" => Status::SUCCESS
+            ], 200);
+        } else {
+            return response()->json([
+                "error" => "Product not found",
+                "status" => Status::FAILED
+            ], 404);
+        }
     }
+
 
 
     public function update(TransactionRequest $_request , $transactionId)
