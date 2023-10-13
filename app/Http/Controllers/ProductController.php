@@ -38,7 +38,7 @@ class ProductController extends Controller
         ],201);
     }
 
-    public function update(ProductRequest $_request , Integer $productId)
+    public function update(ProductRequest $_request ,$productId)
     {
         $product = Product::find($productId);
         

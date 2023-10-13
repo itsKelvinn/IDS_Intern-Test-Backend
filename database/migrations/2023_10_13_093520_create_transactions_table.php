@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('productID')->constrained("products")->onDelete('cascade');
             $table->integer("amount");
-            $table->string("customerName");
+            $table->string("productName");
             $table->integer("status");
-            $table->timestamp("transactionDate");
+            $table->timestamp("transactionDate")->useCurrent();
             $table->string("createBy");
-            $table->date("createOn");
+            $table->timestamp("createOn")->useCurrent();
         });
     }
 

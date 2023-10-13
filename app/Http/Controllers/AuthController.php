@@ -7,12 +7,13 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     public function signIn(Request $_request)
     {
-        $credentials = $_request->only('email', 'password');
+        $credentials = $_request->only('username', 'password');
 
         if (Auth::attempt($credentials)) 
         {
@@ -32,7 +33,10 @@ class AuthController extends Controller
 
     public function register(UserRequest $_request)
     {
-        $user = User::create($_request->all());
+        $data = $_request->all();
+        $data['password'] = Hash::make($_request->password);
+
+        $user = User::create($data);
 
         return response()->json([
             "data" => null,

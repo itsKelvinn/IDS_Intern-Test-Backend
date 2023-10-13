@@ -13,10 +13,10 @@ class TransactionController extends Controller
     {
         $transactions = Transaction::all();
 
-        if($transactions->empty())
+        if($transactions->isEmpty())
         {
             return response()->json([
-                "data" => $transactions,
+                "data" => null,
                 "status" => Status::FAILED
             ],404);
         }
@@ -29,15 +29,20 @@ class TransactionController extends Controller
 
     public function create(TransactionRequest $_request)
     {
-        $transactions = Transaction::create($_request->all());
+        $validatedTransaction = $_request->all();
+        $validatedTransaction['transactionDate'] = now(); 
+        $validatedTransaction['createOn'] = now();
+
+        $transaction = Transaction::create($validatedTransaction);
         
         return response()->json([
-            "data" => $transactions,
+            "data" => $transaction,
             "status" => Status::SUCCESS
-        ],200);
+        ], 200);
     }
 
-    public function update(TransactionRequest $_request , Integer $transactionId)
+
+    public function update(TransactionRequest $_request , $transactionId)
     {
         $transactions = Transaction::find($transactionId);
 
