@@ -14,6 +14,7 @@ class Transaction extends Model
     protected $fillable = [
         "productID",
         "productName",
+        "customerName",
         "amount",
         "status",
         "createBy",

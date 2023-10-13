@@ -40,6 +40,7 @@ class TransactionRequest extends FormRequest
             "productID" => "required",
             "amount" => "required",
             "status" => "required",
+            "customerName" => 'required',
             "createBy" => "required"
         ];
     }
